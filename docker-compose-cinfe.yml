@@ -3,12 +3,22 @@ services:
   postgres:
     build:
       context: images
-      target: dev
-      dockerfile: postgres.dockerfile
-    image: postgres-cinfe
+      target: ${POSTGRES_TARGET}
+      dockerfile: ${POSTGRES_FILE}
+    image: ${POSTGRES_IMAGE}
     container_name: bxcode-postgres
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: ${POSTGRES_USERNAME}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
     ports:
-      - "5432:5432"
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
     restart: always
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+    networks:
+      - cinfe
+
+networks:
+  cinfe:
+    driver: bridge
