@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  postgres:
+    build:
+      context: images
+      target: dev
+      dockerfile: postgres.dockerfile
+    image: postgres-cinfe
+    container_name: bxcode-postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    restart: always
