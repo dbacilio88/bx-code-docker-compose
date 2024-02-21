@@ -94,4 +94,4 @@ fabric.properties
 
 #images
 #volumes
-volumes
+volumes/*
