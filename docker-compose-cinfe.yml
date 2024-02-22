@@ -16,6 +16,7 @@ services:
     restart: always
     volumes:
       - ./volumes/postgres:/var/lib/postgresql/data
+      - ./scripts/ep-cinfe-statistic-postgres.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - cinfe
 

@@ -1,6 +1,7 @@
 #/app /urs /lib
 ######STAGE: DEV #######
 FROM postgres:latest AS dev
+USER postgres
 LABEL autor="christian bacilio"
 LABEL description="create image postgres version latest"
 LABEL version="1.0.0"
