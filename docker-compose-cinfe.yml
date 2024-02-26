@@ -19,6 +19,26 @@ services:
       - ./scripts/ep-cinfe-statistic-postgres.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - cinfe
+  keycloak:
+    image: quay.io/keycloak/keycloak:19.0.1
+    container_name: bxcode-keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_ADDR: postgres
+      DB_PORT: ${POSTGRES_PORT}
+      DB_SCHEMA: keycloak
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    command:
+      - start-dev
+    networks:
+      - cinfe
 
 networks:
   cinfe:
