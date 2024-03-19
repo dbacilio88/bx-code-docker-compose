@@ -2,5 +2,6 @@
 #images
 #volumes
 volumes/postgres/*
+volumes/jenkins/*
 #env
 .env
