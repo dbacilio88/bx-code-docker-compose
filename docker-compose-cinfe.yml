@@ -1,5 +1,21 @@
 version: '3.9'
 services:
+  jenkins:
+    build:
+      context: images
+      target: dev
+      dockerfile: jenkins.dockerfile
+    container_name: jenkins
+    privileged: true
+    user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./volumes/jenkins:/var/jenkins_home
+    networks:
+      - cinfe
+
   postgres:
     build:
       context: images
@@ -39,17 +55,8 @@ services:
     networks:
       - cinfe
 
-  jenkins:
-    image: jenkins/jenkins:latest
-    container_name: jenkins
-    privileged: true
-    user: root
-    ports:
-      - "8081:8080"
-      - "50000:50000"
-    networks:
-      - cinfe
-  
+
+
 
   keycloak:
     image: quay.io/keycloak/keycloak:19.0.1
