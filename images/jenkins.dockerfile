@@ -12,7 +12,7 @@ COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 # Instalar plugins de Jenkins utilizando jenkins-plugin-cli
 RUN jenkins-plugin-cli --plugins $(cat /usr/share/jenkins/ref/plugins.txt)
 
-# Copia archivos de configuración personalizados
+# Copiar archivos de configuración personalizados
 #COPY config.xml /var/jenkins_home/config.xml
 
 # Configuración adicional (si es necesario)
